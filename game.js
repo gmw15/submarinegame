@@ -32,7 +32,7 @@ function gameOver() {
     gameOverSound.play();
     backgroundMusic.pause();
     setTimeout(function() {
-        alert('Game Over! Your score was ' + Math.floor(score));
+        alert('Game Over! You have saved ' + Math.floor(score) + " billionaires");
         window.location.reload();
     }, 100);
 }
