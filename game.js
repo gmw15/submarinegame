@@ -15,11 +15,14 @@ upButton.addEventListener('touchend', () => moveUp = false);
 downButton.addEventListener('touchstart', () => moveDown = true);
 downButton.addEventListener('touchend', () => moveDown = false);
 
+var backgroundMusic = new Audio('background.mp3'); // Replace with the path to your background music file
+
 function startGame() {
     isGameOver = false;
     score = 0;
     document.getElementById('submarine').style.backgroundImage = "url('submarine.png')";
     document.getElementById('gameScreen').innerHTML = '<div id="submarine"></div>';
+    backgroundMusic.play();
     gameInterval = setInterval(moveGame, 30);
 }
 
@@ -29,6 +32,9 @@ function gameOver() {
     document.getElementById('submarine').style.backgroundImage = "url('explosion.png')";
     document.getElementById('submarine').style.width = '200px';
     document.getElementById('submarine').style.height = '80px';
+    var gameOverSound = new Audio('gameover.wav'); // Add your game over sound file url here
+    gameOverSound.play();
+    backgroundMusic.pause();
     setTimeout(function() {
         alert('Game Over! Your score was ' + Math.floor(score));
         window.location.reload();
@@ -108,6 +114,7 @@ function handleKey(event) {
     if (event.code === 'ArrowUp') moveUp = false;
     if (event.code === 'ArrowDown') moveDown = false;
   }
+  backgroundMusic.play();
 }
 
 document.addEventListener('keydown', handleKey);
