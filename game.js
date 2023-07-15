@@ -10,12 +10,8 @@ let moveUp = false;
 let moveDown = false;
 var isGameOver = false;
 
-upButton.addEventListener('touchstart', () => moveUp = true);
-upButton.addEventListener('touchend', () => moveUp = false);
-downButton.addEventListener('touchstart', () => moveDown = true);
-downButton.addEventListener('touchend', () => moveDown = false);
-
 var backgroundMusic = new Audio('background.mp3'); // Replace with the path to your background music file
+var backgroundMusicStarted = false;
 
 function startGame() {
     isGameOver = false;
@@ -117,6 +113,32 @@ function handleKey(event) {
   backgroundMusic.play();
 }
 
+function moveSubmarineUp() {
+    if (submarine.offsetTop > 0) { // Up
+        submarine.style.top = (submarine.offsetTop - 10) + 'px';
+    }
+    if (!backgroundMusicStarted) {
+        backgroundMusic.play().catch(function(error) {
+            console.error("Failed to play:", error);
+        });
+        backgroundMusicStarted = true; // set the flag to true so the music doesn't start again
+    }
+}
+
+function moveSubmarineDown() {
+    if (submarine.offsetTop < gameScreen.offsetHeight - submarine.offsetHeight) { // Down
+        submarine.style.top = (submarine.offsetTop + 10) + 'px';
+    }
+    if (!backgroundMusicStarted) {
+        backgroundMusic.play().catch(function(error) {
+            console.error("Failed to play:", error);
+        });
+        backgroundMusicStarted = true; // set the flag to true so the music doesn't start again
+    }
+}
+
 document.addEventListener('keydown', handleKey);
 document.addEventListener('keyup', handleKey);
+document.getElementById('upBtn').addEventListener('click', moveSubmarineUp);
+document.getElementById('downBtn').addEventListener('click', moveSubmarineDown);
 let gameInterval = setInterval(gameLoop, 20);
