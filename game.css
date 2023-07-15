@@ -1,0 +1,50 @@
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#gameScreen {
+  position: relative; 
+  height: 50vmin; 
+  width: 80vmin; 
+  border: 1px solid #000;
+  background-image: url('underwater-background.jpg'); /* Add your background image url here */
+  background-repeat: no-repeat; /* Prevent image repetition */
+  background-size: cover; /* Scale the image to cover the game screen */
+}
+
+#submarine {
+  position: absolute; 
+  top: 50%; 
+  left: 20%;
+  width: 15%; 
+  height: 10%;
+  background-image: url('submarine.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.obstacle {
+  position: absolute; 
+  right: -5vmin; 
+  width: 5vmin;
+  background: #999;
+}
+
+#controls {
+  display: none;
+  margin-top: 10px;
+}
+
+#controls button {
+  padding: 10px;
+}
+
+@media screen and (max-width: 768px) {
+  #controls {
+    display: flex;
+    justify-content: space-between;
+    width: 80vmin;
+  }
+}
